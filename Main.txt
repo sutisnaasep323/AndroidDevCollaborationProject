@@ -1,29 +1,6 @@
 import java.util.HashMap
 
-class User(val username: String, val password: String)
-
-class AuthManager {
-    private val usersDatabase = HashMap<String, User>()
-
-    fun signUp(username: String, password: String): Boolean {
-        if (!usersDatabase.containsKey(username)) {
-            val newUser = User(username, password)
-            usersDatabase[username] = newUser
-            return true
-        }
-        return false
-    }
-
-    fun login(username: String, password: String): Boolean {
-        val user = usersDatabase[username]
-        return user != null && user.password == password
-    }
-}
-
 fun main() {
-    val authManager = AuthManager()
-    var currentUser: User? = null
-
     while (true) {
         println("===== Home Menu =====")
         println("1. Sign Up")

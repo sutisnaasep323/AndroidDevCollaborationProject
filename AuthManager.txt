@@ -14,4 +14,18 @@ class AuthManager {
         val user = usersDatabase[username]
         return user != null && user.password == password
     }
+	    fun searchUsername(username: String): User? {
+        return usersDatabase[username]
+    }
+
+    fun viewMyProfile(username: String) {
+        val user = usersDatabase[username]
+        if (user != null) {
+            println("My Profile:")
+            println("Username: ${user.username}")
+            println("Password: ${user.password}")  // Sebaiknya hindari menampilkan password secara langsung
+        } else {
+            println("User Not Found")
+        }
+    }
 }

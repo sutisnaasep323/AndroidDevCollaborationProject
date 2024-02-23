@@ -1,12 +1,15 @@
-import java.util.HashMap
-
 fun main() {
+    val authManager = AuthManager()
+    var currentUser: User? = null
+
     while (true) {
         println("===== Home Menu =====")
         println("1. Sign Up")
         println("2. Login")
         println("3. Home")
-        println("4. Exit")
+        println("4. Search User")
+        println("5. My Profile")
+  println("6. Exit")
         print("Pilih menu: ")
 
         when (readLine()?.toIntOrNull()) {
@@ -31,7 +34,7 @@ fun main() {
 
                 val loginResult = authManager.login(loginUsername, loginPassword)
                 if (loginResult) {
-                    currentUser = User(loginUsername, loginPassword)
+                    currentUser = authManager.getUserByUsername(loginUsername)
                     println("Login successful. Selamat datang, ${currentUser?.username}!")
                 } else {
                     println("Login failed. Username atau password salah.")
@@ -46,6 +49,22 @@ fun main() {
                 }
             }
             4 -> {
+                print("Masukkan username yang ingin dicari: ")
+                val searchUsername = readLine() ?: ""
+                val searchedUser = authManager.getUserByUsername(searchUsername)
+                if (searchedUser != null) {
+                    println("User ditemukan:")
+                    println("Username: ${searchedUser.username}")
+                } else {
+                    println("User tidak ditemukan.")
+                }
+            }
+            5 -> {
+    print("Masukkan username untuk melihat profil: ")
+                val inputUsername = readLine() ?: ""
+                authManager.viewMyProfile(inputUsername)
+      }
+      6 -> {
                 println("Terima kasih! Sampai jumpa lagi.")
                 break
             }

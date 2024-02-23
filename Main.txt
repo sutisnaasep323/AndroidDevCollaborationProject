@@ -1,0 +1,19 @@
+fun main() {
+    val authManager = AuthManager()
+
+    // Sign Up
+    val signUpResult = authManager.signUp("john_doe", "password123")
+    if (signUpResult) {
+        println("Sign up successful")
+    } else {
+        println("Username already exists. Please choose another username.")
+    }
+
+    // Login
+    val loginResult = authManager.login("john_doe", "password123")
+    if (loginResult) {
+        println("Login successful")
+    } else {
+        println("Login failed. Invalid username or password.")
+    }
+}

@@ -1,0 +1,17 @@
+class AuthManager {
+    private val usersDatabase = HashMap<String, User>()
+
+    fun signUp(username: String, password: String): Boolean {
+        if (!usersDatabase.containsKey(username)) {
+            val newUser = User(username, password)
+            usersDatabase[username] = newUser
+            return true
+        }
+        return false
+    }
+
+    fun login(username: String, password: String): Boolean {
+        val user = usersDatabase[username]
+        return user != null && user.password == password
+    }
+}
